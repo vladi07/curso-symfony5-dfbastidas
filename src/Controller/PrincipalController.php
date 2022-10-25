@@ -19,6 +19,8 @@ class PrincipalController extends AbstractController
         $posts2 = $entityManager->getRepository(Post::class)->findOneBy(['titulo' => 'Como superar a tu ex']);
         $posts3 = $entityManager->getRepository(Post::class)->findBy(['likes'=>'']);
 
+        $post4 = $entityManager->getRepository(Post::class)->BuscarTodosPost();
+
 
         return $this->render('principal/index.html.twig', [
             'controller_name' => 'Bienvenido a la Ventana Principal',
@@ -26,6 +28,8 @@ class PrincipalController extends AbstractController
             'post1' => $posts1,
             'post2' => $posts2,
             'post3' => $posts3,
+
+            'post4' => $post4,
         ]);
     }
 }
