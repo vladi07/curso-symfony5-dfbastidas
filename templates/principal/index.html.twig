@@ -13,7 +13,7 @@
     <h1>Busqueda con Fusiones Personalizadas</h1>
     {{dump(post4)}}#}
 
-
+    {#
     <table>
         <thead>
             <tr>
@@ -23,7 +23,7 @@
                 <th>Foto</th>
                 <th>Fecha de Publicacion</th>
                 <th>Contenido</th>
-                {#<th>Usuario</th>#}
+
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -36,7 +36,7 @@
                 <td>{{ post4.foto }}</td>
                 <td>{{ post4.fecha_publicacion|date('d/m/Y') }}</td>
                 <td>{{ post4.contenido }}</td>
-                {#<td>{{ post4.usuario.nombre }}</td>#}
+
                 <td>
                     <div class="">
                         <a class="btn btn-success btn-sm" href="">
@@ -55,4 +55,45 @@
         {% endfor %}
         </tbody>
     </table>
+    #}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 cursor">
+                {% for post4 in post4 %}
+                <div class="bg-white rounded p-3 my-3" onclick="window.location.href='{{ path('verPost',{id:post4.id}) }}'">
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <h3>{{ post4.titulo }}</h3>
+                            <div class="my-3 bg-yellow">
+                                <i class="fa fa-user"></i>
+                                <strong>Creado por: {{ post4.nombre }}</strong>
+                            </div>
+                            <div class="bg-green">
+                                <i class="far fa-clock"></i>
+                                <strong>Fecha de publicación: {{ post4.fecha_publicacion|date('d/m/Y') }}</strong>
+                            </div>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <div class="align-self-center">
+                                <img class="rounded" src="{{ asset('uploads/foto/'~post4.foto) }}" width="150px" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <div class="bg-white rounded p-3 my-3">
+                    <h4>Comentarios</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="navigation">
+
+        </div>
+    </div>
+
 {% endblock %}
