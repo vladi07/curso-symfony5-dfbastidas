@@ -26,7 +26,7 @@ class PostRepository extends ServiceEntityRepository
             ->createQuery('
                 select post.id, post.titulo, post.foto, post.fecha_publicacion
                 from App:Post post
-            ') -> getResult();
+            ');
     }
 
     public function save(Post $entity, bool $flush = false): void
