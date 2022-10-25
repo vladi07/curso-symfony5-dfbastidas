@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PrincipalController extends AbstractController
 {
-    #[Route('/principal', name: 'principal')]
+    #[Route('/', name: 'principal')]
     public function index(EntityManagerInterface $entityManager): Response
     {
         /*

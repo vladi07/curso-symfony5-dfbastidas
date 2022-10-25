@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nuevo Post{% endblock %}
+{% block title %}
+    Nuevo Post|{{ parent() }}
+{% endblock %}
 
 {% block body %}
+    {{ parent() }}
 
     {{ form(formulario) }}
 
