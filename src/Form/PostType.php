@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,7 +18,11 @@ class PostType extends AbstractType
         $builder
             ->add('titulo', TextType::class)
             //->add('likes')
-            ->add('foto')
+            ->add('foto', FileType::class, [
+                'label' => 'Selecciones una imagen',
+                'mapped' => false,
+                'required' => false,
+            ])
             //->add('fecha_publicacion')
             ->add('contenido', TextareaType::class)
             //->add('usuario')
