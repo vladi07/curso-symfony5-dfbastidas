@@ -56,6 +56,11 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         $this -> roles = ['ROLE_USER'];
     }
 
+    public function __toString()
+    {
+        return $this->nombre;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

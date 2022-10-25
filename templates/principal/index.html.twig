@@ -1,19 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Principal{% endblock %}
+{% block title %}
+    Principal|{{ parent() }}
+{% endblock %}
 
 {% block body %}
-
-    {{ dump(post) }}
-
+    {#{{ dump(post) }}
     {{dump(post1)}}
-
     {{dump(post2)}}
-
     {{dump(post3)}}
-
     <h1>Busqueda con Fusiones Personalizadas</h1>
+    {{dump(post4)}}#}
 
-    {{dump(post4)}}
-    
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Likes</th>
+                <th>Foto</th>
+                <th>Fecha de Publicacion</th>
+                <th>Contenido</th>
+                {#<th>Usuario</th>#}
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post4 in post4%}
+            <tr>
+                <td>{{ post4.id }}</td>
+                <td>{{ post4.titulo }}</td>
+                <td>{{ post4.likes }}</td>
+                <td>{{ post4.foto }}</td>
+                <td>{{ post4.fecha_publicacion|date('d/m/Y') }}</td>
+                <td>{{ post4.contenido }}</td>
+                {#<td>{{ post4.usuario.nombre }}</td>#}
+                <td>
+                    <div class="">
+                        <a class="btn btn-success btn-sm" href="">
+                            <i></i> Ver
+                        </a>
+                        <a href="">
+                            <i></i> Editar
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="22">No se encontraron registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

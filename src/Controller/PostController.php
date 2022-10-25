@@ -60,4 +60,23 @@ class PostController extends AbstractController
             'formulario' => $formulario-> createView(),
         ]);
     }
+
+    #[Route('/post/{id}', name:'verPost')]
+    public function verPost($id, EntityManagerInterface $entityManager){
+        $post = $entityManager->getRepository(Post::class)->find($id);
+        return $this->render('post/verPost.html.twig',[
+            'post'=>$post
+        ]);
+    }
+
+    #[Route('/mi_post', name:'miPost')]
+    public function miPost(EntityManagerInterface $entityManager){
+
+        $usuario = $this->getUser();
+        $post = $entityManager->getRepository(Post::class)->findBy(['usuario'=>$usuario]);
+
+        return $this->render('post/miPost.html.twig',[
+            'post' => $post
+        ]);
+    }
 }
