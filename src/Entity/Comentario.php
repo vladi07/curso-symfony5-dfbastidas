@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ComentarioRepository::class)]
 class Comentario
 {
+    const COMENTARIO_AGREGADO_EXITOSAMENTE = '¡Comentario agregado exitosamente!';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -26,6 +28,11 @@ class Comentario
 
     #[ORM\ManyToOne(inversedBy: 'comentario')]
     private ?Post $post = null;
+
+    public function __construct()
+    {
+        $this -> fecha_publicacion = new \DateTime();
+    }
 
     public function getId(): ?int
     {

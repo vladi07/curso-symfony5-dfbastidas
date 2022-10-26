@@ -13,11 +13,11 @@
         <div class="d-flex bd-highlight">
             <div class="p-2 flex-grow-1 bd-highlight">
                 <h3>{{ post.titulo }}</h3>
-                <div class="my-3" style="color: #3282b8;">
+                <div class="my-3" style="color: blue;">
                     <i class="fa fa-thumbs-up"></i>
                     <strong># Likes</strong>
                 </div>
-                <div style="color: #c3f584;">
+                <div style="color: green;">
                     <i class="far fa-clock"></i>
                     <strong>Fecha de publicacion: {{ post.fechaPublicacion|date('d-m-Y') }}</strong>
                 </div>
@@ -32,5 +32,21 @@
         <div class="text-justify my-3">
             {{ post.contenido }}
         </div>
+        <hr>
     </div>
+
+    <div class="container p-3">
+        {{ form(formulario) }}
+
+        <h3>Comentarios</h3>
+        {% for comentario in comentarios %}
+            <div class="rounded bg-white my-2 p-3 border">
+                <h5>{{ comentario.nombre}} Dijo:</h5>
+                <div class="w-100">{{ comentario.comentario }}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {{ dump(comentarios) }}
+
 {% endblock %}

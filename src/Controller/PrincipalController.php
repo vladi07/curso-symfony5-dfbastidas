@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comentario;
 use App\Entity\Post;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,17 +20,25 @@ class PrincipalController extends AbstractController
         $posts2 = $entityManager->getRepository(Post::class)->findOneBy(['titulo' => 'Como superar a tu ex']);
         $posts3 = $entityManager->getRepository(Post::class)->findBy(['likes'=>'']);
         */
+        $usuario = $this->getUser();
+        if ($usuario){
+            $post4 = $entityManager->getRepository(Post::class)->BuscarTodosPost();
 
-        $post4 = $entityManager->getRepository(Post::class)->BuscarTodosPost();
+            $comentarios = $entityManager->getRepository(Comentario::class)->BuscarComentario($usuario->getId());
 
-        return $this->render('principal/index.html.twig', [
-            /*'controller_name' => 'Bienvenido a la Ventana Principal',
-            'post' => $posts,
-            'post1' => $posts1,
-            'post2' => $posts2,
-            'post3' => $posts3,*/
+            return $this->render('principal/index.html.twig', [
+                /*'controller_name' => 'Bienvenido a la Ventana Principal',
+                'post' => $posts,
+                'post1' => $posts1,
+                'post2' => $posts2,
+                'post3' => $posts3,*/
 
-            'post4' => $post4,
-        ]);
+                'post4' => $post4,
+                'comentarios' => $comentarios
+            ]);
+        } else {
+           return $this->redirectToRoute('app_login');
+        }
+
     }
 }
